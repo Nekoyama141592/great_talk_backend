@@ -1,7 +1,7 @@
 import * as AWS from 'aws-sdk';
-const { updateAWSConfig } = require('./updateAWSConfig');
-const { detectDominantLanguage } = require('./detectDominantLanguage');
-const { mul100AndRoundingDown } = require('./mul100AndRoundingDown');
+import { updateAWSConfig } from './updateAWSConfig';
+import { detectDominantLanguage } from './detectDominantLanguage';
+import { mul100AndRoundingDown } from './mul100AndRoundingDown';
 export const detectText = async (text: string) => {
     updateAWSConfig();
     const comprehend = new AWS.Comprehend({apiVersion: '2017-11-27'});
@@ -29,7 +29,7 @@ export const detectText = async (text: string) => {
             };
 
             const dSdata = await comprehend.detectSentiment(dSparams).promise();
-            if (dSdata && dSdata.SentimentScore) {
+            if (dSdata && dSdata.SentimentScore?.Negative && dSdata.SentimentScore?.Positive) {
                 return {
                     "languageCode": lCode,
                     "negativeScore": mul100AndRoundingDown(dSdata.SentimentScore.Negative),

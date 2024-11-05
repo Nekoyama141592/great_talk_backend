@@ -1,5 +1,5 @@
 import * as AWS from 'aws-sdk';
-const { updateAWSConfig } = require('./updateAWSConfig');
+import { updateAWSConfig } from './updateAWSConfig';
 export const detectModerationLabels = async (bucketName: string, fileName: string) => {
     updateAWSConfig();
     const rekognition = new AWS.Rekognition();
