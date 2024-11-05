@@ -8,7 +8,6 @@ export const onFollowerDeleteV2 = onDocumentDeleted(
     async (event) => {
         const newValue = event.data?.data();
         const batch = admin.firestore().batch();
-        
         if (newValue?.activeUserRef && newValue?.passiveUserRef) {
             batch.update(newValue.activeUserRef, {
                 'followingCount': admin.firestore.FieldValue.increment(-1),
@@ -17,7 +16,6 @@ export const onFollowerDeleteV2 = onDocumentDeleted(
                 'followerCount': admin.firestore.FieldValue.increment(-1),
             });
         }
-        
         await batch.commit();
     }
 );
