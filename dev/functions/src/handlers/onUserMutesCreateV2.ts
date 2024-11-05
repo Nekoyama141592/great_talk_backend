@@ -7,7 +7,7 @@ export const onUserMutesCreateV2 = onDocumentCreated(
     async (event) => {
         const newValue = event.data?.data();
         if (!newValue) return;
-        await newValue.postRef.update({
+        await newValue.passiveUserRef.update({
             "muteCount": admin.firestore.FieldValue.increment(1),
         });
     }
