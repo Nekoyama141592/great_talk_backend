@@ -18,3 +18,5 @@ export { onUserMutesCreateV2 } from './handlers/onUserMutesCreateV2';
 export { onUserMutesDeleteV2 } from './handlers/onUserMutesDeleteV2';
 export { onUserUpdateLogCreateV2 } from './handlers/onUserUpdateLogCreateV2';
 export { putObjectV2 } from './handlers/putObjectV2';
+export { verifyAndroidReceiptV2 } from './handlers/verifyAndroidReceiptV2';
+export { verifyIOSReceiptV2 } from './handlers/verifyIOSReceiptV2';
