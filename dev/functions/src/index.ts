@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 admin.initializeApp();
 export { deleteObjectV2 } from './handlers/deleteObjectV2';
+export { generateTextV2 } from './handlers/generateTextV2';
 export { getObjectV2 } from './handlers/getObjectV2';
 export { onBookmarkCategoryDeleteV2 } from './handlers/onBookmarkCategoryDeleteV2';
 export { onFollowerCreateV2 } from './handlers/onFollowerCreateV2';
