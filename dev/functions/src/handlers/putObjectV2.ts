@@ -22,12 +22,12 @@ export const putObjectV2 = onCall(async (request) => {
   updateAWSConfig();
   const s3 = new S3();
   try {
-    const { image, bucket, object }: PutObjectRequest = request.data;
-    if (!image || !bucket || !object) {
+    const { image, bucket }: PutObjectRequest = request.data;
+    if (!image || !bucket) {
       throw new HttpsError('invalid-argument', 'Missing required parameters');
     }
-
-    const key = `${auth.uid}/profile/${object}`;
+    
+    const key = `${auth.uid}/profile.jpg`;
     const buffer = Buffer.from(image, 'base64');
 
     const params = {
