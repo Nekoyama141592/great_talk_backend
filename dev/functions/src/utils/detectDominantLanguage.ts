@@ -1,8 +1,8 @@
-import * as AWS from 'aws-sdk';
+import { Comprehend } from 'aws-sdk';
 import { updateAWSConfig } from './updateAWSConfig';
 export const detectDominantLanguage = async (text: string) => {
     updateAWSConfig();
-    const comprehend = new AWS.Comprehend({apiVersion: '2017-11-27'});
+    const comprehend = new Comprehend({apiVersion: '2017-11-27'});
     let lCode = '';
     
     if (!text) {

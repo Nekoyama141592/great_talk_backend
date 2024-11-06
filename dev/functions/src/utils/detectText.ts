@@ -1,10 +1,10 @@
-import * as AWS from 'aws-sdk';
+import { Comprehend } from 'aws-sdk';
 import { updateAWSConfig } from './updateAWSConfig';
 import { detectDominantLanguage } from './detectDominantLanguage';
 import { mul100AndRoundingDown } from './mul100AndRoundingDown';
 export const detectText = async (text: string) => {
     updateAWSConfig();
-    const comprehend = new AWS.Comprehend({apiVersion: '2017-11-27'});
+    const comprehend = new Comprehend({apiVersion: '2017-11-27'});
     let detectedText = {
         "languageCode": "",
         "negativeScore": 0,

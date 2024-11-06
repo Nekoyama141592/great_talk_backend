@@ -1,11 +1,11 @@
-import * as AWS from 'aws-sdk';
+import { Rekognition } from 'aws-sdk';
 import { updateAWSConfig } from './updateAWSConfig';
 export const detectModerationLabels = async (bucketName: string, fileName: string) => {
     updateAWSConfig();
-    const rekognition = new AWS.Rekognition();
+    const rekognition = new Rekognition();
     let detectedImage = {
         "bucketName": bucketName,
-        "moderationLabels": <AWS.Rekognition.ModerationLabels>[],
+        "moderationLabels": <Rekognition.ModerationLabels>[],
         "moderationModelVersion": '',
         "value": fileName,
     };
