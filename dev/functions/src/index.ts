@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 admin.initializeApp();
-
+export { deleteObjectV2 } from './handlers/deleteObjectV2';
+export { getObjectV2 } from './handlers/getObjectV2';
 export { onBookmarkCategoryDeleteV2 } from './handlers/onBookmarkCategoryDeleteV2';
 export { onFollowerCreateV2 } from './handlers/onFollowerCreateV2';
 export { onFollowerDeleteV2 } from './handlers/onFollowerDeleteV2';
@@ -16,3 +17,4 @@ export { onUserDeleteV2 } from './handlers/onUserDeleteV2';
 export { onUserMutesCreateV2 } from './handlers/onUserMutesCreateV2';
 export { onUserMutesDeleteV2 } from './handlers/onUserMutesDeleteV2';
 export { onUserUpdateLogCreateV2 } from './handlers/onUserUpdateLogCreateV2';
+export { putObjectV2 } from './handlers/putObjectV2';
