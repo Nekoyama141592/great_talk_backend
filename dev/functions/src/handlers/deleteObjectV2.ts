@@ -8,7 +8,7 @@ interface DeleteObjectRequest {
 }
 
 interface DeleteObjectResponse {
-  image: string;
+  base64Image: string;
 }
 
 export const deleteObjectV2 = onCall(async (request) => {
@@ -34,7 +34,7 @@ export const deleteObjectV2 = onCall(async (request) => {
 
     const base64Image = data.Body.toString('base64');
     const response: DeleteObjectResponse = {
-      image: base64Image
+      base64Image
     };
 
     return response;
