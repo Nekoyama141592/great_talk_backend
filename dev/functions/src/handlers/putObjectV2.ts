@@ -3,14 +3,12 @@ import { S3 } from 'aws-sdk';
 import { updateAWSConfig } from '../utils/updateAWSConfig';
 
 interface PutObjectRequest {
-  image: string;
-  bucket: string;
+  base64Image: string;
   object: string;
 }
 
 interface PutObjectResponse {
-  bucket: string;
-  object: string;
+  base64Image: string;
 }
 
 export const putObjectV2 = onCall(async (request) => {
@@ -22,17 +20,16 @@ export const putObjectV2 = onCall(async (request) => {
   updateAWSConfig();
   const s3 = new S3();
   try {
-    const { image, bucket }: PutObjectRequest = request.data;
-    if (!image || !bucket) {
+    const { base64Image,object }: PutObjectRequest = request.data;
+    if (!base64Image || !object) {
       throw new HttpsError('invalid-argument', 'Missing required parameters');
     }
     
-    const key = `${auth.uid}/profile.jpg`;
-    const buffer = Buffer.from(image, 'base64');
-
+    const buffer = Buffer.from(base64Image, 'base64');
+    const bucket = `${process.env.AWS_S3_BUCKET_NAME}`
     const params = {
       Bucket: bucket,
-      Key: key,
+      Key: object,
       Body: buffer,
       ContentEncoding: 'base64',
       ContentType: 'image/jpeg'
@@ -41,8 +38,7 @@ export const putObjectV2 = onCall(async (request) => {
     await s3.putObject(params).promise();
 
     const response: PutObjectResponse = {
-      bucket,
-      object: key
+      base64Image
     };
 
     return response;

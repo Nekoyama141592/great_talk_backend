@@ -3,8 +3,7 @@ import { S3 } from 'aws-sdk';
 import { updateAWSConfig } from '../utils/updateAWSConfig';
 
 interface GetObjectRequest {
-  bucketName: string;
-  fileName: string;
+  object: string;
 }
 
 interface GetObjectResponse {
@@ -15,14 +14,14 @@ export const getObjectV2 = onCall(async (request) => {
   updateAWSConfig();
   const s3 = new S3();
   try {
-    const { bucketName, fileName }: GetObjectRequest = request.data;
-    if (!bucketName || !fileName) {
+    const { object }: GetObjectRequest = request.data;
+    if (!object) {
       throw new HttpsError('invalid-argument', 'Missing required parameters');
     }
-
+    const bucket = `${process.env.AWS_S3_BUCKET_NAME}`
     const params = {
-      Bucket: bucketName,
-      Key: fileName
+      Bucket: bucket,
+      Key: object
     };
 
     const data = await s3.getObject(params).promise();
